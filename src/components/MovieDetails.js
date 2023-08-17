@@ -110,8 +110,8 @@ export default function MovieDetails({
               </p>
               <p>{genre}</p>
               <p>
-                <span>*</span>
-                {imdbRating} IMDb rating
+                <span>⭐</span>
+                <strong>{imdbRating}</strong> IMDb rating
               </p>
             </div>
           </header>

@@ -84,11 +84,11 @@ export default function App() {
     <>
       <NavBar>
         <Logo />
-        <Search query={query} setQuery={setQuery} />
-        <SearchResults movies={movies} />
       </NavBar>
       <Main>
         <Box>
+          <Search query={query} setQuery={setQuery} />
+          <SearchResults movies={movies} />
           {isLoading && <Loader />}
           {!isLoading && !error && (
             <MovieList movies={movies} onSelectMovie={handleSelectMovie} />
