@@ -16,10 +16,21 @@ const KEY = "f86addd7";
 export default function App() {
   const [query, setQuery] = useState("");
   const [movies, setMovies] = useState([]);
+  // const [watched, setWatched] = useState(
+  //   JSON.parse(localStorage.getItem("APP_WATCH"))
+  // );
   const [watched, setWatched] = useState([]);
   const [selectedId, setSelectedId] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
+
+  useEffect(
+    function () {
+      localStorage.setItem("APP_WATCHED", JSON.stringify(watched));
+      // console.log(localStorage.wList);
+    },
+    [watched]
+  );
 
   function handleSelectMovie(id) {
     setSelectedId((selectedId) => (id === selectedId ? null : id));
@@ -31,6 +42,7 @@ export default function App() {
 
   function handleAddWatched(movie) {
     setWatched((watched) => [...watched, movie]);
+    // localStorage.setItem("APP_WATCHED", JSON.stringify(watched));
   }
 
   function handleDeleteWatched(id) {
