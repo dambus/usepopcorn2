@@ -16,10 +16,24 @@ const KEY = "f86addd7";
 export default function App() {
   const [query, setQuery] = useState("");
   const [movies, setMovies] = useState([]);
-  const [watched, setWatched] = useState([]);
+  const [watched, setWatched] = useState(() => {
+    const watchedItems = JSON.parse(localStorage.getItem("watchedMovies"));
+    if (watchedItems) {
+      return watchedItems;
+    } else {
+      return [];
+    }
+  });
   const [selectedId, setSelectedId] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
+
+  useEffect(
+    function () {
+      localStorage.setItem("watchedMovies", JSON.stringify(watched));
+    },
+    [watched]
+  );
 
   function handleSelectMovie(id) {
     setSelectedId((selectedId) => (id === selectedId ? null : id));
