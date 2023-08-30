@@ -17,17 +17,8 @@ const KEY = "f86addd7";
 export default function App() {
   const [query, setQuery] = useState("");
   const [selectedId, setSelectedId] = useState(null);
-  // const [watched, setWatched] = useState(() => {
-  //   const watchedItems = JSON.parse(localStorage.getItem("watchedMovies"));
-  //   if (watchedItems) {
-  //     return watchedItems;
-  //   } else {
-  //     return [];
-  //   }
-  // });
-
   const { movies, isLoading, error } = useMovies(query, handleCloseMovie);
-  const [watched, setWatched] = useLocalStorageState([]);
+  const [watched, setWatched] = useLocalStorageState([], "watchedMovies");
 
   function handleSelectMovie(id) {
     setSelectedId((selectedId) => (id === selectedId ? null : id));
